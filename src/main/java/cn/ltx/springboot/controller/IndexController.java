@@ -12,4 +12,20 @@ public class IndexController {
         System.out.println("index");
         return "index";
     }
+
+    @RequestMapping("/get")
+    @ResponseBody
+    public String get(String name){
+        System.out.println("get");
+        System.out.println(name);
+        return "get";
+    }
+
+    @RequestMapping("/post")
+    @ResponseBody
+    public String post(String name){
+        System.out.println("post");
+        System.out.println(name);
+        return "post";
+    }
 }
