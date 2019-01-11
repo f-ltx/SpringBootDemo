@@ -8,30 +8,43 @@ import java.util.List;
 public class TestPinyin {
 
     public static void main(String[] args) {
-        List<String[]> list = new ArrayList<String[]>();
-        String[] strings1 = new String[]{"A", "B"};
-        String[] strings2 = new String[]{"a", "b", "c"};
-        String[] strings3 = new String[]{"@"};
-        String[] strings4 = new String[]{"1", "2", "3"};
+        System.out.println("行弹参山会");
+        long start = System.currentTimeMillis();
+        List<String[]> list = new ArrayList<>();
+        String[] strings1 = new String[]{"hang", "xing","heng"};
+        String[] strings2 = new String[]{"tan", "dan"};
+        String[] strings3 = new String[]{"can","sen"};
+        String[] strings4 = new String[]{"shan"};
+        String[] strings5 = new String[]{"hui","kuai"};
 
         list.add(strings1);
         list.add(strings2);
         list.add(strings3);
         list.add(strings4);
+        list.add(strings5);
 
         List<String[]> result = new ArrayList<>();
 
         if (list.size() < 2) {
             System.out.println("error");
-        } else if (list.size() == 2) {
-            mergeTwo(list.get(0), list.get(1),result);
         } else {
-            for (int i = 0; i < list.size() - 2; i++) {
-                mergeMany(list, i,result);
+            for (int i = 0; i < list.size() - 1; i++) {
+                if (i==list.size()-2){
+                    mergeTwo(list.get(i), list.get(i+1),result);
+                }else{
+                    mergeMany(list, i,result);
+                }
             }
         }
 
-        System.out.println(JSON.toJSONString(result));
+        int sum = 0;
+        for (int i=0;i<result.size();i++){
+            sum = sum + result.get(i).length;
+            System.out.println(JSON.toJSONString(result.get(i)));
+        }
+        System.out.println("共计"+sum+"条记录。");
+        long end = System.currentTimeMillis();
+        System.out.println(end-start + "ms");
     }
 
     public static void mergeMany(List<String[]> list, int index,List<String[]> result) {
