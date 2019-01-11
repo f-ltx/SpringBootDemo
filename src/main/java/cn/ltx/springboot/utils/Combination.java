@@ -16,7 +16,7 @@ public class Combination {
         }
     }
 
-    //从字符数组中第begin个字符开始挑选number个字符加入list中  
+    //从字符数组中第begin个字符开始挑选number个字符加入list中
     public static void combine(char[] cs, int begin, int number, List<Character> list) {
         if (number == 0) {
             System.out.println(list.toString());
