@@ -180,11 +180,17 @@ public class IDCardUtil {
         return birthday;
     }
 
+    public static void printf(String idCardNo){
+        System.out.println(idCardNo);
+        System.out.println(IDCardUtil.checkCardId(idCardNo));
+        System.out.println(IDCardUtil.parseAddress(idCardNo));
+        System.out.println(IDCardUtil.parseAge(idCardNo));
+        System.out.println(IDCardUtil.parseBirthday(idCardNo));
+        System.out.println(IDCardUtil.parseGender(idCardNo));
+    }
+
     public static void main(String[] args) {
-        System.out.println(IDCardUtil.checkCardId("41042119900802501X"));
-        System.out.println(IDCardUtil.parseAddress("41042119900802501X"));
-        System.out.println(IDCardUtil.parseAge("41042119900802501X"));
-        System.out.println(IDCardUtil.parseBirthday("41042119900802501X"));
-        System.out.println(IDCardUtil.parseGender("41042119900802501X"));
+//        printf("410102198008087800");
+//        printf("410102198008086517");
     }
 }
