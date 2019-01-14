@@ -71,7 +71,7 @@ public class TestPinyin {
         for (int z = index + 2; z < list.size(); z++) {
             newList.add(list.get(z));
         }
-        //3.递归调用
+        //3.递归调用，当递归到倒数第二个时，不再递归调用
         if (newList.size() >= 2) {
             mergeArray(newList, 0,result);
         }
