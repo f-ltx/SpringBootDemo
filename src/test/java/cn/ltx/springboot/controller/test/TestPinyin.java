@@ -23,17 +23,14 @@ public class TestPinyin {
         list.add(strings4);
         list.add(strings5);
 
+        //用于存储组合结果
         List<String[]> result = new ArrayList<>();
-
+        //只处理list长度大于等于2的，只有一个元素的不处理。
         if (list.size() < 2) {
             System.out.println("error");
         } else {
             for (int i = 0; i < list.size() - 1; i++) {
-                if (i==list.size()-2){
-                    mergeTwo(list.get(i), list.get(i+1),result);
-                }else{
-                    mergeMany(list, i,result);
-                }
+                mergeArray(list, i,result);
             }
         }
 
@@ -47,35 +44,38 @@ public class TestPinyin {
         System.out.println(end-start + "ms");
     }
 
-    public static void mergeMany(List<String[]> list, int index,List<String[]> result) {
+    /**
+     * Description: 用于组合不同的字符串数组，按照顺序组合
+     * @param   list 需要组合的字符串数组
+     * @param   index 需要组合的字符串数组索引
+     * @param   result 用于存储组合后的字符串数组
+     * @author  litianxiang
+     * @date    2019/1/14 14:30
+     *
+     */
+    public static void mergeArray(List<String[]> list, int index,List<String[]> result) {
         String[] arrayA = list.get(index);
         String[] arrayB = list.get(index + 1);
+        //临时用于存放组合的数组
         List<String> tempList = new ArrayList<>();
+        //1.首先把list中的前两个组合起来
         for (int x = 0; x < arrayA.length; x++) {
             for (int y = 0; y < arrayB.length; y++) {
                 tempList.add(arrayA[x] + arrayB[y]);
             }
         }
+        //把临时组合好的数组放进newList，用于往下递归调用
         List<String[]> newList = new ArrayList<>();
         newList.add(tempList.toArray(new String[tempList.size()]));
+        //2.其次把没有组合的放进newList中
         for (int z = index + 2; z < list.size(); z++) {
             newList.add(list.get(z));
         }
-        if (newList.size() > 2) {
-            mergeMany(newList, 0,result);
-        } else {
-            mergeTwo(newList.get(0), newList.get(1),result);
+        //3.递归调用
+        if (newList.size() >= 2) {
+            mergeArray(newList, 0,result);
         }
         result.add(newList.get(0));
     }
 
-    public static void mergeTwo(String[] arrayA, String[] arrayB,List<String[]> result) {
-        List<String> tempList = new ArrayList<>();
-        for (int x = 0; x < arrayA.length; x++) {
-            for (int y = 0; y < arrayB.length; y++) {
-                tempList.add(arrayA[x] + arrayB[y]);
-            }
-        }
-        result.add(tempList.toArray(new String[1]));
-    }
 }
