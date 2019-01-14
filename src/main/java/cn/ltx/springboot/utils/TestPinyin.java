@@ -1,4 +1,4 @@
-package cn.ltx.springboot.controller.test;
+package cn.ltx.springboot.utils;
 
 import com.alibaba.fastjson.JSON;
 
