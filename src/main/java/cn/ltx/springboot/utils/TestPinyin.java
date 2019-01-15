@@ -3,28 +3,32 @@ package cn.ltx.springboot.utils;
 import com.alibaba.fastjson.JSON;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class TestPinyin {
 
     public static void main(String[] args) {
-        System.out.println("行弹参山会");
-        long start = System.currentTimeMillis();
         List<String[]> list = new ArrayList<>();
         String[] strings1 = new String[]{"hang", "xing","heng"};
         String[] strings2 = new String[]{"tan", "dan"};
         String[] strings3 = new String[]{"can","sen"};
         String[] strings4 = new String[]{"shan"};
         String[] strings5 = new String[]{"hui","kuai"};
-
+        String[] strings6 = new String[]{"hang", "xing","heng"};
         list.add(strings1);
         list.add(strings2);
         list.add(strings3);
         list.add(strings4);
         list.add(strings5);
+        list.add(strings6);
+        list.add(strings6);
+        list.add(strings6);
 
+        //start
+        long start = System.currentTimeMillis();
         //用于存储组合结果
-        List<String[]> result = new ArrayList<>();
+        List<String> result = new ArrayList<>();
         //只处理list长度大于等于2的，只有一个元素的不处理。
         if (list.size() < 2) {
             System.out.println("error");
@@ -33,15 +37,12 @@ public class TestPinyin {
                 mergeArray(list, i,result);
             }
         }
-
-        int sum = 0;
-        for (int i=0;i<result.size();i++){
-            sum = sum + result.get(i).length;
-            System.out.println(JSON.toJSONString(result.get(i)));
-        }
-        System.out.println("共计"+sum+"条记录。");
         long end = System.currentTimeMillis();
         System.out.println(end-start + "ms");
+        System.out.println(JSON.toJSONString(result));
+        System.out.println(result.size());
+        //end
+
     }
 
     /**
@@ -53,7 +54,7 @@ public class TestPinyin {
      * @date    2019/1/14 14:30
      *
      */
-    public static void mergeArray(List<String[]> list, int index,List<String[]> result) {
+    public static void mergeArray(List<String[]> list, int index,List<String> result) {
         String[] arrayA = list.get(index);
         String[] arrayB = list.get(index + 1);
         //临时用于存放组合的数组
@@ -75,7 +76,7 @@ public class TestPinyin {
         if (newList.size() >= 2) {
             mergeArray(newList, 0,result);
         }
-        result.add(newList.get(0));
+        result.addAll(Arrays.asList(newList.get(0)));
     }
 
 }
