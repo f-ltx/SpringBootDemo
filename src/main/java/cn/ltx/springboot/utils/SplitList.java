@@ -1,20 +1,33 @@
 package cn.ltx.springboot.utils;
 
+import com.alibaba.fastjson.JSON;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class SplitList {
     public static void main(String[] args) {
         List<String> list = new ArrayList<>();
-        for (int i=0;i<500;i++){
+        for (int i=0;i<10;i++){
             list.add("param" + i);
         }
-        System.out.println(list.size());
-        System.out.println("------------------");
-        List<List<String>> splitList = splitList(list,900);
-        System.out.println(splitList.size());
-        for (List<String> strings : splitList) {
-            System.out.println(strings.size());
+        System.out.println(JSON.toJSONString(list));
+//        System.out.println(list.size());
+//        System.out.println("------------------");
+//        List<List<String>> splitList = splitList(list,900);
+//        System.out.println(splitList.size());
+//        for (List<String> strings : splitList) {
+//            System.out.println(strings.size());
+//        }
+
+        StringBuffer sql = new StringBuffer("select * from table_name where name = ''") ;
+        if(list.size()>0){
+            sql.append(" and r.tradPiny in ('");
+            for (String s : list) {
+                sql.append(s).append("','").append(s.toUpperCase()).append("','");
+            }
+            sql.delete(sql.lastIndexOf(","),sql.length()).append(")");
+            System.out.println(JSON.toJSONString(sql));
         }
     }
 
