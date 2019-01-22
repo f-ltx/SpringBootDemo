@@ -1,24 +1,22 @@
 package cn.ltx.springboot.entity;
 
-import java.util.List;
-
-/**
- * Description: 用户表
- * @author      litianxiang
- * @date        2019/1/22
- */
 public class User {
-    private Long id;
-    private String username;
-    private String password ;
-    private String sex;
+    private Integer userid;
 
-    public Long getId() {
-        return id;
+    private String username;
+
+    private String password;
+
+    private Integer organid;
+
+    private Integer roleid;
+
+    public Integer getUserid() {
+        return userid;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserid(Integer userid) {
+        this.userid = userid;
     }
 
     public String getUsername() {
@@ -26,7 +24,7 @@ public class User {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username == null ? null : username.trim();
     }
 
     public String getPassword() {
@@ -34,14 +32,22 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password == null ? null : password.trim();
     }
 
-    public String getSex() {
-        return sex;
+    public Integer getOrganid() {
+        return organid;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setOrganid(Integer organid) {
+        this.organid = organid;
+    }
+
+    public Integer getRoleid() {
+        return roleid;
+    }
+
+    public void setRoleid(Integer roleid) {
+        this.roleid = roleid;
     }
 }
