@@ -5,8 +5,8 @@ package cn.ltx.springboot.constant;
  * @author      litianxiang
  * @date        2019/1/22
  */
-public class NumberConstants {
-    private NumberConstants(){}
+public class NumberConstant {
+    private NumberConstant(){}
     public final static Integer TWO = 2;
     public final static Integer TEN = 10;
     public final static Integer SEVENTEEN = 17;

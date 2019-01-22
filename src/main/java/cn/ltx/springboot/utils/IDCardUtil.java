@@ -1,6 +1,6 @@
 package cn.ltx.springboot.utils;
 
-import cn.ltx.springboot.constant.NumberConstants;
+import cn.ltx.springboot.constant.NumberConstant;
 
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -79,12 +79,12 @@ public class IDCardUtil {
         StringBuilder builder = new StringBuilder();
         builder.append(birthday.get(Calendar.YEAR));
         long month = birthday.get(Calendar.MONTH) + 1;
-        if (month < NumberConstants.TEN) {
+        if (month < NumberConstant.TEN) {
             builder.append("0");
         }
         builder.append(month);
         long date = birthday.get(Calendar.DATE);
-        if (date < NumberConstants.TEN) {
+        if (date < NumberConstant.TEN) {
             builder.append("0");
         }
         builder.append(date);
@@ -103,7 +103,7 @@ public class IDCardUtil {
      * 5.通过上面得知如果余数是2，就会在身份证的第18位数字上出现罗马数字的Ⅹ。如果余数是10，身份证的最后一位号码就是2。<br>
      */
     private static char calcTrailingNumber(char[] chars) {
-        if (chars.length < NumberConstants.SEVENTEEN) {
+        if (chars.length < NumberConstant.SEVENTEEN) {
             return ' ';
         }
         int[] c = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
@@ -126,9 +126,9 @@ public class IDCardUtil {
      */
     private static String randomCode() {
         int code = new Random().nextInt(1000);
-        if (code < NumberConstants.TEN) {
+        if (code < NumberConstant.TEN) {
             return "00" + code;
-        } else if (code < NumberConstants.ONEHUNDRED) {
+        } else if (code < NumberConstant.ONEHUNDRED) {
             return "0" + code;
         } else {
             return "" + code;
@@ -148,7 +148,7 @@ public class IDCardUtil {
     public static String parseGender(String cid) {
         char c = cid.charAt(cid.length() - 2);
         int sex = Integer.parseInt(String.valueOf(c));
-        if (sex % NumberConstants.TWO == 0) {
+        if (sex % NumberConstant.TWO == 0) {
             return "女";
         } else {
             return "男";
