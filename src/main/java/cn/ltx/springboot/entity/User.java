@@ -1,53 +1,53 @@
 package cn.ltx.springboot.entity;
 
 public class User {
-    private Integer userid;
+    private Integer userId;
 
-    private String username;
+    private String userName;
 
-    private String password;
+    private String userPassword;
 
-    private Integer organid;
+    private Integer organId;
 
-    private Integer roleid;
+    private Integer roleId;
 
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
-    public String getPassword() {
-        return password;
+    public String getUserPassword() {
+        return userPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword == null ? null : userPassword.trim();
     }
 
-    public Integer getOrganid() {
-        return organid;
+    public Integer getOrganId() {
+        return organId;
     }
 
-    public void setOrganid(Integer organid) {
-        this.organid = organid;
+    public void setOrganId(Integer organId) {
+        this.organId = organId;
     }
 
-    public Integer getRoleid() {
-        return roleid;
+    public Integer getRoleId() {
+        return roleId;
     }
 
-    public void setRoleid(Integer roleid) {
-        this.roleid = roleid;
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 }

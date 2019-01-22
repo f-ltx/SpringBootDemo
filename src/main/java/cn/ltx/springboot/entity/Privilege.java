@@ -1,23 +1,23 @@
 package cn.ltx.springboot.entity;
 
 public class Privilege {
-    private Integer privilegeid;
+    private Integer privilegeId;
 
-    private String privilegename;
+    private String privilegeName;
 
-    public Integer getPrivilegeid() {
-        return privilegeid;
+    public Integer getPrivilegeId() {
+        return privilegeId;
     }
 
-    public void setPrivilegeid(Integer privilegeid) {
-        this.privilegeid = privilegeid;
+    public void setPrivilegeId(Integer privilegeId) {
+        this.privilegeId = privilegeId;
     }
 
-    public String getPrivilegename() {
-        return privilegename;
+    public String getPrivilegeName() {
+        return privilegeName;
     }
 
-    public void setPrivilegename(String privilegename) {
-        this.privilegename = privilegename == null ? null : privilegename.trim();
+    public void setPrivilegeName(String privilegeName) {
+        this.privilegeName = privilegeName == null ? null : privilegeName.trim();
     }
 }

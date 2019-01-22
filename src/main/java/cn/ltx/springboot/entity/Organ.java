@@ -1,43 +1,43 @@
 package cn.ltx.springboot.entity;
 
 public class Organ {
-    private Integer organid;
+    private Integer organId;
 
-    private String organcode;
+    private String organCode;
 
-    private String organname;
+    private String organName;
 
-    private Integer parentid;
+    private Integer parentId;
 
-    public Integer getOrganid() {
-        return organid;
+    public Integer getOrganId() {
+        return organId;
     }
 
-    public void setOrganid(Integer organid) {
-        this.organid = organid;
+    public void setOrganId(Integer organId) {
+        this.organId = organId;
     }
 
-    public String getOrgancode() {
-        return organcode;
+    public String getOrganCode() {
+        return organCode;
     }
 
-    public void setOrgancode(String organcode) {
-        this.organcode = organcode == null ? null : organcode.trim();
+    public void setOrganCode(String organCode) {
+        this.organCode = organCode == null ? null : organCode.trim();
     }
 
-    public String getOrganname() {
-        return organname;
+    public String getOrganName() {
+        return organName;
     }
 
-    public void setOrganname(String organname) {
-        this.organname = organname == null ? null : organname.trim();
+    public void setOrganName(String organName) {
+        this.organName = organName == null ? null : organName.trim();
     }
 
-    public Integer getParentid() {
-        return parentid;
+    public Integer getParentId() {
+        return parentId;
     }
 
-    public void setParentid(Integer parentid) {
-        this.parentid = parentid;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 }
