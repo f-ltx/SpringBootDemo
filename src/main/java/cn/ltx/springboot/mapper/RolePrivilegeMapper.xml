@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ltx.springboot.mapper.RolePrivilegeMapper">
+  <resultMap id="BaseResultMap" type="cn.ltx.springboot.entity.RolePrivilege">
+    <id column="rp_id" jdbcType="INTEGER" property="rpId" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="privilege_id" jdbcType="INTEGER" property="privilegeId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    rp_id, role_id, privilege_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_role_privilege
+    where rp_id = #{rpId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_role_privilege
+    where rp_id = #{rpId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ltx.springboot.entity.RolePrivilege">
+    insert into t_role_privilege (rp_id, role_id, privilege_id
+      )
+    values (#{rpId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{privilegeId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ltx.springboot.entity.RolePrivilege">
+    insert into t_role_privilege
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rpId != null">
+        rp_id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="privilegeId != null">
+        privilege_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rpId != null">
+        #{rpId,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="privilegeId != null">
+        #{privilegeId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ltx.springboot.entity.RolePrivilege">
+    update t_role_privilege
+    <set>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="privilegeId != null">
+        privilege_id = #{privilegeId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where rp_id = #{rpId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ltx.springboot.entity.RolePrivilege">
+    update t_role_privilege
+    set role_id = #{roleId,jdbcType=INTEGER},
+      privilege_id = #{privilegeId,jdbcType=INTEGER}
+    where rp_id = #{rpId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="cn.ltx.springboot.entity.RolePrivilege">
+    <id column="rpid" jdbcType="INTEGER" property="rpid" />
+    <result column="roleid" jdbcType="INTEGER" property="roleid" />
+    <result column="privilegeid" jdbcType="INTEGER" property="privilegeid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    rpid, roleid, privilegeid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_role_privilege
+    where rpid = #{rpid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_role_privilege
+    where rpid = #{rpid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ltx.springboot.entity.RolePrivilege">
+    insert into t_role_privilege (rpid, roleid, privilegeid
+      )
+    values (#{rpid,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{privilegeid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ltx.springboot.entity.RolePrivilege">
+    insert into t_role_privilege
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rpid != null">
+        rpid,
+      </if>
+      <if test="roleid != null">
+        roleid,
+      </if>
+      <if test="privilegeid != null">
+        privilegeid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rpid != null">
+        #{rpid,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null">
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="privilegeid != null">
+        #{privilegeid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ltx.springboot.entity.RolePrivilege">
+    update t_role_privilege
+    <set>
+      <if test="roleid != null">
+        roleid = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="privilegeid != null">
+        privilegeid = #{privilegeid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where rpid = #{rpid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ltx.springboot.entity.RolePrivilege">
+    update t_role_privilege
+    set roleid = #{roleid,jdbcType=INTEGER},
+      privilegeid = #{privilegeid,jdbcType=INTEGER}
+    where rpid = #{rpid,jdbcType=INTEGER}
+  </update>
+</mapper>
