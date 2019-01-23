@@ -25,6 +25,7 @@ public class TestPinyin {
         list.add(strings6);
         list.add(strings6);
 
+        System.out.println(JSON.toJSONString(list));
         //start
         long start = System.currentTimeMillis();
         //用于存储组合结果
