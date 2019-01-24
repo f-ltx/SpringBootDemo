@@ -5,8 +5,10 @@
 
 <generatorConfiguration>
     <!-- 本地数据库驱动程序jar包的全路径 -->
+    <!--<classPathEntry-->
+            <!--location="D:\Java\apache-maven-3.5.4\MyRepository\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar"/>-->
     <classPathEntry
-            location="D:\Java\apache-maven-3.5.4\MyRepository\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar"/>
+        location="D:\Java\Maven\maven-repository\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar"/>
 
     <context id="my" targetRuntime="MyBatis3">
         <!-- 是否去除自动生成的注释 true：是 ： false:否 suppressDate 阻止生成的注释包含时间戳-->
@@ -25,7 +27,7 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <!-- 实体类生成的位置 -->
+        <!-- [entity]实体类生成的位置 -->
         <javaModelGenerator targetPackage="cn.ltx.springboot.entity" targetProject="src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
@@ -33,21 +35,21 @@
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <!-- targetProject:mapper映射文件生成的位置
-           如果maven工程只是单独的一个工程，targetProject="src/main/java"
+        <!-- [mapper.xml]targetProject:mapper映射文件生成的位置
+           如果maven工程只是单独的一个工程，targetProject="src/main/resources"
            若果maven工程是分模块的工程，targetProject="所属模块的名称"，例如：
            targetProject="ecps-manager-mapper"，下同-->
-        <sqlMapGenerator targetPackage="cn.ltx.springboot.mapper"
-                         targetProject="src/main/java">
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
-        <!-- Mapper 接口文件的位置 -->
-        <javaClientGenerator targetPackage="cn.ltx.springboot.mapper" targetProject="src/main/java" type="XMLMAPPER">
+        <!-- [dao]Mapper 接口文件的位置 -->
+        <javaClientGenerator targetPackage="cn.ltx.springboot.dao" targetProject="src/main/java" type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <!-- 指定数据库表 -->
+        <!-- 指定数据库表 % 代表全部，单个表使用表名-->
         <table tableName="%"
                enableCountByExample="false"
                enableUpdateByExample="false"

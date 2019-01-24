@@ -13,7 +13,7 @@ public class Organ {
 
     private Date modifyDate;
 
-    private Integer parentCode;
+    private String parentCode;
 
     public Integer getOrganId() {
         return organId;
@@ -55,11 +55,11 @@ public class Organ {
         this.modifyDate = modifyDate;
     }
 
-    public Integer getParentCode() {
+    public String getParentCode() {
         return parentCode;
     }
 
-    public void setParentCode(Integer parentCode) {
-        this.parentCode = parentCode;
+    public void setParentCode(String parentCode) {
+        this.parentCode = parentCode == null ? null : parentCode.trim();
     }
 }
