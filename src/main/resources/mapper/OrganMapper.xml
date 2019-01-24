@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ltx.springboot.dao.OrganMapper">
+  <resultMap id="BaseResultMap" type="cn.ltx.springboot.entity.Organ">
+    <id column="organ_id" jdbcType="INTEGER" property="organId" />
+    <result column="organ_code" jdbcType="VARCHAR" property="organCode" />
+    <result column="organ_name" jdbcType="VARCHAR" property="organName" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+    <result column="parent_code" jdbcType="VARCHAR" property="parentCode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    organ_id, organ_code, organ_name, create_date, modify_date, parent_code
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_organ
+    where organ_id = #{organId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_organ
+    where organ_id = #{organId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.ltx.springboot.entity.Organ">
+    insert into t_organ (organ_id, organ_code, organ_name, 
+      create_date, modify_date, parent_code
+      )
+    values (#{organId,jdbcType=INTEGER}, #{organCode,jdbcType=VARCHAR}, #{organName,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}, #{parentCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ltx.springboot.entity.Organ">
+    insert into t_organ
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="organId != null">
+        organ_id,
+      </if>
+      <if test="organCode != null">
+        organ_code,
+      </if>
+      <if test="organName != null">
+        organ_name,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="modifyDate != null">
+        modify_date,
+      </if>
+      <if test="parentCode != null">
+        parent_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="organId != null">
+        #{organId,jdbcType=INTEGER},
+      </if>
+      <if test="organCode != null">
+        #{organCode,jdbcType=VARCHAR},
+      </if>
+      <if test="organName != null">
+        #{organName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="parentCode != null">
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ltx.springboot.entity.Organ">
+    update t_organ
+    <set>
+      <if test="organCode != null">
+        organ_code = #{organCode,jdbcType=VARCHAR},
+      </if>
+      <if test="organName != null">
+        organ_name = #{organName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="parentCode != null">
+        parent_code = #{parentCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where organ_id = #{organId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ltx.springboot.entity.Organ">
+    update t_organ
+    set organ_code = #{organCode,jdbcType=VARCHAR},
+      organ_name = #{organName,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      parent_code = #{parentCode,jdbcType=VARCHAR}
+    where organ_id = #{organId,jdbcType=INTEGER}
+  </update>
+</mapper>
