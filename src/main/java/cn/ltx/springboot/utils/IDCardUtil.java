@@ -283,16 +283,17 @@ public class IDCardUtil {
     }
 
     public static void printf(String idCardNo) {
-        System.out.println(idCardNo);
-        System.out.println(IDCardUtil.checkCardId(idCardNo));
-        System.out.println(IDCardUtil.parseAddress(idCardNo));
-        System.out.println(IDCardUtil.parseAge(idCardNo));
-        System.out.println(IDCardUtil.parseBirthday(idCardNo));
-        System.out.println(IDCardUtil.parseGender(idCardNo));
+        System.out.print(idCardNo + " | ");
+        System.out.print(IDCardUtil.checkCardId(idCardNo) + " | ");
+        System.out.printf("%5s",IDCardUtil.parseAge(idCardNo) + " | ");
+        System.out.print(IDCardUtil.parseBirthday(idCardNo) + " | ");
+        System.out.print(IDCardUtil.parseGender(idCardNo) + " | ");
+        System.out.print(IDCardUtil.parseAddress(idCardNo));
+        System.out.println();
     }
 
     public static void main(String[] args) {
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 100; i++) {
             printf(generate());
         }
     }
