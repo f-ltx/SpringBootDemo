@@ -282,19 +282,21 @@ public class IDCardUtil {
         return birthday;
     }
 
-    public static void printf(String idCardNo) {
-        System.out.print(idCardNo + " | ");
-        System.out.print(IDCardUtil.checkCardId(idCardNo) + " | ");
-        System.out.printf("%5s",IDCardUtil.parseAge(idCardNo) + " | ");
-        System.out.print(IDCardUtil.parseBirthday(idCardNo) + " | ");
-        System.out.print(IDCardUtil.parseGender(idCardNo) + " | ");
-        System.out.print(IDCardUtil.parseAddress(idCardNo));
-        System.out.println();
+    public static void printf(String idCardNo,int minAge) {
+        if (IDCardUtil.parseAge(idCardNo) > minAge) {
+            System.out.print(idCardNo + " | ");
+            System.out.print(IDCardUtil.checkCardId(idCardNo) + " | ");
+            System.out.printf("%5s", IDCardUtil.parseAge(idCardNo) + " | ");
+            System.out.print(IDCardUtil.parseBirthday(idCardNo) + " | ");
+            System.out.print(IDCardUtil.parseGender(idCardNo) + " | ");
+            System.out.print(IDCardUtil.parseAddress(idCardNo));
+            System.out.println();
+        }
     }
 
     public static void main(String[] args) {
         for (int i = 0; i < 100; i++) {
-            printf(generate());
+            printf(generate(),18);
         }
     }
 }
