@@ -9,7 +9,7 @@ import java.util.UUID;
  */
 public class UuidUtil {
     public static String getUuid(){
-        return UUID.randomUUID().toString().replaceAll("-","");
+        return UUID.randomUUID().toString().replaceAll("-","").toUpperCase();
     }
     public static void main(String[] args) {  
         for (int i = 0; i < 5; i++) {
