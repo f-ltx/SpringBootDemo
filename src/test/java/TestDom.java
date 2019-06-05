@@ -51,21 +51,30 @@ public class TestDom {
                         name = attributes.get(i).getValue();
                     }
                     if (attributes.get(i).getName().equalsIgnoreCase("url")) {
-                        uri = attributes.get(i).getValue().substring(0, attributes.get(i).getValue().indexOf(".do"));
+                        uri = attributes.get(i).getValue().substring(0, attributes.get(i).getValue().indexOf(".do")+3);
                     }
                 }
                 resourceSql.append(code).append("', '");
                 resourceSql.append(description).append("', '");
-                resourceSql.append(name).append("', 'GS01', '01', '");
-                resourceSql.append("/").append(uri).append("*');");
-                sql1.add(resourceSql);
-                String rrId = UuidUtil.getUuid();
-                StringBuffer rrSql = new StringBuffer("INSERT INTO aaf_role_resource (id, create_time, operate_user_id, res_id, role_id) VALUES ('");
-                rrSql.append(rrId);
-                rrSql.append("', SYSDATE, '999', '");
-                rrSql.append(resourceId);
-                rrSql.append("', '402890b66acdbdbe016acdd731a40002');");
-                sql2.add(rrSql);
+                resourceSql.append(name).append("', 'OGS01', '02', '");
+                resourceSql.append(uri).append("*');");
+                boolean flag = true;
+                //去重
+//                for (StringBuffer stringBuffer : sql1) {
+//                    if(stringBuffer.indexOf(uri) != -1){
+//                        flag = false;
+//                    }
+//                }
+                if(flag){
+                    sql1.add(resourceSql);
+                    String rrId = UuidUtil.getUuid();
+                    StringBuffer rrSql = new StringBuffer("INSERT INTO aaf_role_resource (id, create_time, operate_user_id, res_id, role_id) VALUES ('");
+                    rrSql.append(rrId);
+                    rrSql.append("', SYSDATE, '999', '");
+                    rrSql.append(resourceId);
+                    rrSql.append("', '402890b66acdbdbe016acdd731a40002');");
+                    sql2.add(rrSql);
+                }
             }
         }
 
