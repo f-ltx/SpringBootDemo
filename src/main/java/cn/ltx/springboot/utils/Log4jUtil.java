@@ -1,9 +1,9 @@
 package cn.ltx.springboot.utils;
 
 
+import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
-import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Array;
 import java.util.HashMap;
@@ -21,7 +21,7 @@ public class Log4jUtil {
 
     private static Log4jUtil log4jUtil;
 
-    private static Logger logger = (Logger) LoggerFactory.getLogger(Log4jUtil.class);
+    private static Logger logger = LogManager.getLogger(Log4jUtil.class);
 
 
     public Log4jUtil(String configPath) {

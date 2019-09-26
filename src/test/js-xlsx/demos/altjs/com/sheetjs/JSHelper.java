@@ -2,15 +2,14 @@
 /* vim: set ts=2: */
 package com.sheetjs;
 
-import java.lang.Integer;
-import java.lang.StringBuilder;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.NativeArray;
 import org.mozilla.javascript.NativeObject;
 import org.mozilla.javascript.Scriptable;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class JSHelper {
   static String read_file(String file) throws IOException {

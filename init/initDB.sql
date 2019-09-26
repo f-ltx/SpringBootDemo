@@ -24,60 +24,65 @@ p_(或s_)存储过程(Stored Procedure)
 -- 初始化脚本
 DROP DATABASE IF EXISTS springbootdemo;
 CREATE DATABASE IF NOT EXISTS springbootdemo
-  CHARSET utf8;
+    CHARSET utf8;
 USE springbootdemo;
 -- t_organ
-CREATE TABLE t_organ (
-  organ_id    INT COMMENT '机构标识'          AUTO_INCREMENT PRIMARY KEY,
-  organ_code  VARCHAR(50) COMMENT '机构编号' UNIQUE NOT NULL,
-  organ_name  VARCHAR(200) COMMENT '机构名称' DEFAULT '未定义',
-  create_date TIMESTAMP COMMENT '创建时间',
-  modify_date TIMESTAMP COMMENT '修改时间',
-  parent_code VARCHAR(50) COMMENT '上级机构编号'
+CREATE TABLE t_organ
+(
+    organ_id    INT COMMENT '机构标识' AUTO_INCREMENT PRIMARY KEY,
+    organ_code  VARCHAR(50) COMMENT '机构编号' UNIQUE NOT NULL,
+    organ_name  VARCHAR(200) COMMENT '机构名称' DEFAULT '未定义',
+    create_date TIMESTAMP COMMENT '创建时间'    DEFAULT CURRENT_TIMESTAMP,
+    modify_date TIMESTAMP COMMENT '修改时间'    DEFAULT CURRENT_TIMESTAMP,
+    parent_code VARCHAR(50) COMMENT '上级机构编号'
 )
-  COMMENT '组织机构表';
+    COMMENT '组织机构表';
 CREATE INDEX ind_organ_name
-  ON t_organ (organ_name);
+    ON t_organ (organ_name);
 CREATE INDEX ind_parent_code
-  ON t_organ (parent_code);
+    ON t_organ (parent_code);
 -- t_user
-CREATE TABLE t_user (
-  user_id       INT COMMENT '用户标识' AUTO_INCREMENT PRIMARY KEY,
-  user_name     VARCHAR(50) COMMENT '用户名' UNIQUE NOT NULL,
-  user_password VARCHAR(50) COMMENT '密码'         NOT NULL,
-  organ_code    INT COMMENT '所属机构标识',
-  create_date   TIMESTAMP COMMENT '创建时间',
-  modify_date   TIMESTAMP COMMENT '修改时间',
-  role_name     INT COMMENT '所属角色'
+CREATE TABLE t_user
+(
+    user_id       INT COMMENT '用户标识' AUTO_INCREMENT PRIMARY KEY,
+    user_name     VARCHAR(50) COMMENT '用户名' UNIQUE NOT NULL,
+    user_password VARCHAR(50) COMMENT '密码'         NOT NULL,
+    organ_code    INT COMMENT '所属机构标识',
+    create_date   TIMESTAMP COMMENT '创建时间' DEFAULT CURRENT_TIMESTAMP,
+    modify_date   TIMESTAMP COMMENT '修改时间' DEFAULT CURRENT_TIMESTAMP,
+    role_name     INT COMMENT '所属角色'
 )
-  COMMENT '用户表';
+    COMMENT '用户表';
 CREATE INDEX ind_user_name
-  ON t_user (user_name);
+    ON t_user (user_name);
 CREATE INDEX ind_role_name
-  ON t_user (role_name);
+    ON t_user (role_name);
 -- t_role
-CREATE TABLE t_role (
-  role_id     INT COMMENT '角色标识' AUTO_INCREMENT PRIMARY KEY,
-  role_name   VARCHAR(100) COMMENT '角色名称' UNIQUE NOT NULL,
-  create_date TIMESTAMP COMMENT '创建时间',
-  modify_date TIMESTAMP COMMENT '修改时间'
+CREATE TABLE t_role
+(
+    role_id     INT COMMENT '角色标识' AUTO_INCREMENT PRIMARY KEY,
+    role_name   VARCHAR(100) COMMENT '角色名称' UNIQUE NOT NULL,
+    create_date TIMESTAMP COMMENT '创建时间' DEFAULT CURRENT_TIMESTAMP,
+    modify_date TIMESTAMP COMMENT '修改时间' DEFAULT CURRENT_TIMESTAMP
 )
-  COMMENT '角色表';
+    COMMENT '角色表';
 -- t_privilege
-CREATE TABLE t_privilege (
-  privilege_id   INT COMMENT '权限标识' AUTO_INCREMENT PRIMARY KEY,
-  privilege_name VARCHAR(100) COMMENT '权限名称' UNIQUE NOT NULL,
-  create_date    TIMESTAMP COMMENT '创建时间',
-  modify_date    TIMESTAMP COMMENT '修改时间'
+CREATE TABLE t_privilege
+(
+    privilege_id   INT COMMENT '权限标识' AUTO_INCREMENT PRIMARY KEY,
+    privilege_name VARCHAR(100) COMMENT '权限名称' UNIQUE NOT NULL,
+    create_date    TIMESTAMP COMMENT '创建时间' DEFAULT CURRENT_TIMESTAMP,
+    modify_date    TIMESTAMP COMMENT '修改时间' DEFAULT CURRENT_TIMESTAMP
 )
-  COMMENT '权限表';
+    COMMENT '权限表';
 -- t_role_privilege
-CREATE TABLE t_role_privilege (
-  rp_id        INT COMMENT '角色权限关系标识' AUTO_INCREMENT PRIMARY KEY,
-  role_id      INT COMMENT '角色标识' NOT NULL,
-  privilege_id INT COMMENT '权限标识' NOT NULL,
-  create_date  TIMESTAMP COMMENT '创建时间',
-  modify_date  TIMESTAMP COMMENT '修改时间'
+CREATE TABLE t_role_privilege
+(
+    rp_id        INT COMMENT '角色权限关系标识' AUTO_INCREMENT PRIMARY KEY,
+    role_id      INT COMMENT '角色标识' NOT NULL,
+    privilege_id INT COMMENT '权限标识' NOT NULL,
+    create_date  TIMESTAMP COMMENT '创建时间' DEFAULT CURRENT_TIMESTAMP,
+    modify_date  TIMESTAMP COMMENT '修改时间' DEFAULT CURRENT_TIMESTAMP
 )
-  COMMENT '角色权限关系表';
+    COMMENT '角色权限关系表';
 

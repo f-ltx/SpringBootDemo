@@ -3,7 +3,6 @@
 package com.sheetjs;
 
 import org.mozilla.javascript.NativeObject;
-import org.mozilla.javascript.Function;
 
 public class SheetJSFile {
   public NativeObject wb;

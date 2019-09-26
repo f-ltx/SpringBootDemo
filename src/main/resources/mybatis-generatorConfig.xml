@@ -5,10 +5,10 @@
 
 <generatorConfiguration>
     <!-- 本地数据库驱动程序jar包的全路径 -->
-    <!--<classPathEntry-->
-            <!--location="D:\Java\apache-maven-3.5.4\MyRepository\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar"/>-->
     <classPathEntry
-        location="D:\Java\Maven\maven-repository\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar"/>
+            location="D:\Java\apache-maven-3.5.4\MyRepository\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar"/>
+<!--    <classPathEntry-->
+<!--        location="D:\Java\Maven\maven-repository\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar"/>-->
 
     <context id="my" targetRuntime="MyBatis3">
         <!-- 是否去除自动生成的注释 true：是 ： false:否 suppressDate 阻止生成的注释包含时间戳-->
