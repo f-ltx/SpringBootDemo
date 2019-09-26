@@ -60,11 +60,11 @@ public class TestDom {
                 resourceSql.append(uri).append("*');");
                 boolean flag = true;
                 //去重
-//                for (StringBuffer stringBuffer : sql1) {
-//                    if(stringBuffer.indexOf(uri) != -1){
-//                        flag = false;
-//                    }
-//                }
+                for (StringBuffer stringBuffer : sql1) {
+                    if(stringBuffer.indexOf(uri) != -1){
+                        flag = false;
+                    }
+                }
                 if(flag){
                     sql1.add(resourceSql);
                     String rrId = UuidUtil.getUuid();

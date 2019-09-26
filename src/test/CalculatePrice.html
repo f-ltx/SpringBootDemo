@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>计算价格</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+    <script src="html5shiv.min.js"></script>
+    <script src="respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="jquery.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<!-- 加载 由SheetJS出品的js-xlsx -->
+<script type="text/javascript" src="js-xlsx/dist/xlsx.full.min.js"></script>
+<!-- 加载 jQuery validate -->
+<script type="text/javascript" src="jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script type="text/javascript" src="jquery-validation-1.14.0/dist/localization/messages_zh.min.js"></script>
+
+<div class="container">
+    <ul class="nav nav-pills">
+        <li role="presentation"><a href="Setting.html">基本参数</a></li>
+        <li role="presentation" class="active"><a href="CalculatePrice.html">计算价格</a></li>
+    </ul>
+    <br>
+    <form class="form-inline" id="signupForm" method="get" action="">
+        <div class="form-group">
+            <label for="exampleInputAmount">基价：</label>
+            <div class="input-group">
+                <div class="input-group-addon">￥</div>
+                <input type="text" class="form-control" id="exampleInputAmount" name="exampleInputAmount"
+                       placeholder="请输入基价">
+                <div class="input-group-addon">元</div>
+            </div>
+            <div class="input-group" style="color: red"></div>
+        </div>
+        <button type="submit" class="btn btn-primary">生成报价表</button>
+    </form>
+    <br>
+    <div class="panel panel-primary" id="result"></div>
+</div>
+
+
+<script type="application/javascript">
+    //jquery validate设置默认参数
+    $.validator.setDefaults({
+        submitHandler: function () {
+            var html = "<table class='table table-striped'>";
+            for (var x = 1; x < 10; x++) {
+                html += "<tr>";
+                for (var y = 1; y < x+1; y++) {
+                    html += "<td>" + y + " × " + x + " = " + x * y + "</td>";
+                }
+                html += "</tr>";
+            }
+            html += "</table>";
+            $("#result").empty();
+            $("#result").append(html);
+            $("#result").show();
+        },
+        errorPlacement: function (error, element) {
+            element.parent().next().append(error);
+        }
+    });
+
+    $(function () {
+        $("#result").hide();
+        //校验
+        $("#signupForm").validate({
+            rules: {
+                exampleInputAmount: {
+                    required: true,
+                    digits: true
+                }
+            },
+            messages: {
+                exampleInputAmount: {
+                    required: "请输入基价！",
+                    digits: "请输入整数！"
+                }
+            }
+        })
+    });
+
+</script>
+</body>
+</html>

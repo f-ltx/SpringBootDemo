@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>基本参数</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+    <script src="html5shiv.min.js"></script>
+    <script src="respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="jquery.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<!-- 加载 由SheetJS出品的js-xlsx -->
+<script type="text/javascript" src="js-xlsx/dist/xlsx.full.min.js"></script>
+<!-- 加载 jQuery validate -->
+<script type="text/javascript" src="jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script type="text/javascript" src="jquery-validation-1.14.0/dist/localization/messages_zh.min.js"></script>
+
+
+<div class="container">
+    <ul class="nav nav-pills">
+        <li role="presentation" class="active"><a href="Setting.html">基本参数</a></li>
+        <li role="presentation"><a href="CalculatePrice.html">计算价格</a></li>
+    </ul>
+    <br>
+    <div class="panel panel-primary" id="result"></div>
+</div>
+
+<script type="application/javascript">
+    $(function () {
+        loadRemoteFile('excel.xlsx');
+    });
+
+    //加载文件
+    function loadRemoteFile(url) {
+        readWorkbookFromRemoteFile(url, function (workbook) {
+            readWorkbook(workbook);
+        });
+    }
+
+    // 从网络上读取某个excel文件，url必须同域，否则报错
+    function readWorkbookFromRemoteFile(url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', url, true);
+        xhr.responseType = 'arraybuffer';
+        xhr.onload = function (e) {
+            if (xhr.status == 200) {
+                var data = new Uint8Array(xhr.response)
+                var workbook = XLSX.read(data, {type: 'array'});
+                if (callback) callback(workbook);
+            }
+        };
+        xhr.send();
+    }
+
+    //读取工作簿
+    function readWorkbook(workbook) {
+        var sheetNames = workbook.SheetNames; // 工作表名称集合
+        if (sheetNames.length > 0) {
+            for (var i = 0; i < sheetNames.length; i++) {
+                var worksheet = workbook.Sheets[sheetNames[i]];
+                var csv = XLSX.utils.sheet_to_csv(worksheet);
+                document.getElementById('result').innerHTML += "<div class=\"panel-heading\">" + sheetNames[i] + "</div>";
+                document.getElementById('result').innerHTML += csv2table(csv);
+            }
+        }
+    }
+
+    // 将csv转换成表格
+    function csv2table(csv) {
+        var html = '<table class="table table-striped">';
+        var rows = csv.split('\n');
+        rows.pop(); // 最后一行没用的
+        rows.forEach(function (row, idx) {
+            var columns = row.split(',');
+            columns.unshift(idx); // 添加行索引
+            if (idx == 0) { // 添加列索引
+                html += '<tr>';
+                for (var i = 0; i < columns.length; i++) {
+                    html += '<th>' + (i == 0 ? '序号' : columns[i]) + '</th>';
+                }
+                html += '</tr>';
+            } else {
+                html += '<tr>';
+                columns.forEach(function (column) {
+                    html += '<td>' + column + '</td>';
+                });
+                html += '</tr>';
+            }
+        });
+        html += '</table>';
+        return html;
+    }
+</script>
+</body>
+</html>
