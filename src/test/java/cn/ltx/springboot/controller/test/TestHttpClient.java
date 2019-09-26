@@ -100,6 +100,7 @@ public class TestHttpClient {
         HashMap<String, Object> paramMap = new HashMap<>();
         paramMap.put("method", method);
         paramMap.put("datas", datas);
+        System.out.println(datas);
         String result= HttpUtil.post("http://localhost:8080/syncJgjCase", paramMap);
     }
 }

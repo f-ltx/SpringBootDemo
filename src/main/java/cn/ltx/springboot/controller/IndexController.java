@@ -47,6 +47,7 @@ public class IndexController {
     @RequestMapping("/syncJgjCase")
     @ResponseBody
     public String syncJgjCase(HttpServletRequest request, String method, String datas) {
+        System.out.println(datas);
         logger.debug("post----------------------------------------------------");
         String data = Utils3DES.decryptString(datas);
         Map<String, Object> map = new HashMap<>();
