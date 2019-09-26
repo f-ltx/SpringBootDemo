@@ -1,5 +1,6 @@
 package cn.ltx.springboot.controller.test;
 
+import cn.hutool.http.HttpUtil;
 import cn.ltx.springboot.utils.Utils3DES;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpEntity;
@@ -20,6 +21,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class TestHttpClient {
@@ -32,7 +34,8 @@ public class TestHttpClient {
         data.put("casename", "案件名称");
         data.put("caseno", "案件编号");
         datas.put("data", data);
-        httpClient(methods, Utils3DES.encryptString(datas.toJSONString()));
+//        httpClient(methods, Utils3DES.encryptString(datas.toJSONString()));
+        hutoolHttp(methods, Utils3DES.encryptString(datas.toJSONString()));
     }
 
     public static void httpClient(String method, String datas) {
@@ -93,7 +96,10 @@ public class TestHttpClient {
 
     }
 
-    public static void hutoolHttp() {
-
+    public static void hutoolHttp(String method, String datas) {
+        HashMap<String, Object> paramMap = new HashMap<>();
+        paramMap.put("method", method);
+        paramMap.put("datas", datas);
+        String result= HttpUtil.post("http://localhost:8080/syncJgjCase", paramMap);
     }
 }
